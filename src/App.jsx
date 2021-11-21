@@ -1,15 +1,29 @@
 import './App.css'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+
+const Message = (msg) => {
+  return(
+    <div>{msg}</div>
+  )
+}
 
 const App = () => {
-  const [message, setMessage] = useState()
+  const [messages, setMessages] = useState([])
+  const ws = useRef(null)
 
-  const ws = new WebSocket('wss://ws.qexsystems.ru')
-  ws.onmessage = (msg) => setMessage(msg)
+  useEffect(() => {
+    ws.current = new WebSocket('wss://ws.qexsystems.ru')
+    ws.current.onmessage = msg => {
+      setMessages(p => [...p, msg.data])
+    }
+  }, [])
 
   return(
     <div>
       <h1>Currently in development</h1>
+      <ul>
+        {messages.map(x => <li>{x}</li>)}
+      </ul>
     </div>
   )
 }
