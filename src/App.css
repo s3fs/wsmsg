@@ -1,3 +1,135 @@
 :root {
   font-family: monospace;
+  color:#ffffff;
+}
+
+html, body {
+  height: 100%;
+}
+
+.container {
+  margin: 1em;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: end;
+  overflow-y: hidden;
+}
+
+body {
+  background-color: #1a1a1a;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  margin: 0;
+  overflow-y: hidden;
+}
+
+#root {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  overflow-y: hidden;
+}
+
+.chat_header {
+  font-size: 1.5em;
+  margin-bottom: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.message_container {
+  display: flex;
+}
+
+.message {
+  width: 50%;
+  max-width: 250px;
+  background-color: #14ff72;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  margin: 0 0.5em;
+  display: flex;
+  flex-direction: column;
+}
+
+.message_avatar {
+  max-height: 30px;
+  max-width: 30px;
+  border-radius: 100%;
+  align-self: end;
+}
+
+.message_outgoing {
+  flex-direction: row-reverse;
+  justify-content: end;
+}
+
+.message_incoming > .message {
+  background-color: #464646;
+}
+
+.message_incoming > .message > .message_time {
+  color: #14ff72;
+}
+
+.message_initials {
+  font-weight: bold;
+}
+
+.message_time {
+  align-self: end;
+}
+
+.chat_container {
+  display: flex;
+  gap: 0.5em;
+  flex-direction: column;
+  max-height: 100%;
+  margin: 1em 0;
+  overflow-y: auto;
+}
+
+form {
+  display: flex;
+  justify-content: end;
+  width: 100%;
+}
+
+input {
+  font-family: inherit;
+  flex-grow: 1;
+  background-color: #3a3a3a;
+  border: none;
+  padding: 0.5em;
+  color: inherit;
+}
+
+input:focus {
+  outline: none;
+}
+
+button {
+  background-color: #3a3a3a;
+  border: none;
+  padding: 0.5em;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.send_button {
+  font-size: 2em;
+  fill: #9b9b9b
+}
+
+.send_button-active {
+  font-size: 2em;
+  fill:#14ff72;
 }
