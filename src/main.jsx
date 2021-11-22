@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 
-const userId = Math.floor(Math.random() * 1000000000)
+const userId = localStorage.getItem('userId') ? Number(localStorage.getItem('userId')) : Math.floor(Math.random() * 1000000000)
 
 ReactDOM.render(
   <React.StrictMode>

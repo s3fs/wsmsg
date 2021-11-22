@@ -1,6 +1,7 @@
 import './App.css'
 import { ReactComponent as Logo } from './plane.svg'
 import { useState, useEffect, useRef } from 'react'
+import { useBeforeunload } from 'react-beforeunload'
 
 const Message = ({ msg, incoming }) => {
   return(
@@ -26,7 +27,7 @@ const Header = ({ messages, userId }) => {
 }
 
 const App = ({ userId }) => {
-  const [messages, setMessages] = useState([])
+  const [messages, setMessages] = useState(localStorage.getItem('messages') ? JSON.parse(localStorage.getItem('messages')) : [])
   const [text, setText] = useState('')
   const ws = useRef(null)
 
@@ -54,7 +55,7 @@ const App = ({ userId }) => {
       type: 'message',
       id: Math.floor(Math.random() * 1000000000),
       data: text,
-      time: `${date.getHours()}:${date.getMinutes()}`,
+      time: `${date.getHours()}:${(date.getMinutes() < 10 ? '0' : '') + date.getMinutes()}`,
       author: {
         initials: 'Random person',
         id: userId,
@@ -66,6 +67,11 @@ const App = ({ userId }) => {
     setMessages([...messages, obj])
     setText('')
   }
+
+  useBeforeunload(() => {
+    localStorage.setItem('messages', JSON.stringify(messages))
+    localStorage.setItem('userId', userId)
+  })
 
   return(
     <div className='container'>
