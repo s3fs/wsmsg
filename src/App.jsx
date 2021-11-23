@@ -38,7 +38,7 @@ const App = ({ userId }) => {
     ws.current.onclose = () => console.log('WSConn closed')
 
     ws.current.onmessage = msg => {
-      setMessages(p => [...p, JSON.parse(msg.data)])
+      setMessages([...messages, JSON.parse(msg.data)])
     }
 
     return () => ws.current.close()
