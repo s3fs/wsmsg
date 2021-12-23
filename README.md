@@ -1,6 +1,16 @@
 # WebSocket messenger
 
+## Usage
+
+Just open two instances of this application and start messaging :) 
+
+## Features
+
+PWA, Message cache
+
 ## Data format
+
+Messages from other applications must conform to this format to be displayed correctly. 
 
 ```
 {
